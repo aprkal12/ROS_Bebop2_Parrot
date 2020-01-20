@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="shortcut icon" href="#">
+    <meta charset="utf-8">
+    <title></title>
+    <style>
+        .template{
+            text-align:center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width:600px;
+            margin: -300px 0px;
+            transform: translateX(-50%);
+            background-color: black;
+        }
+
+        .btn-list {
+            display:block;
+            margin: 80px 0px;
+        }
+
+        .btn-list button {
+            font-size:1.5rem;
+            width:300px;
+            height:100px;
+        }
+
+        .btn-list input {
+            font-size:1.5rem;
+            width:300px;
+            height:100px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="template">
+      <form action="/" method="post">
+        <input type="hidden" id="here-gps-1" name="here_gps1_alt" value="s1">
+        <input type="hidden" id="here-gps-2" name="here_gps1_lat" value="s12">
+        <input type="hidden" id="dest-gps-1" name="dest_gps2_alt" value="s2">
+        <input type="hidden" id="dest-gps-2" name="dest_gps2_lat" value="s22">
+        <div class="btn-list">
+            <button type="submit" name="num" value='1' class="btn btn-outline-primary">101</button>
+        </div>
+        <div class="btn-list">
+            <button type="submit" name="num" value='2' class="btn btn-outline-primary">102</button>
+        </div>
+        <div class="btn-list">
+            <button type="submit" name="num" value="3" class="btn btn-outline-primary">103</button>
+        </div>
+      </form>
+    </div>
+    <script type="text/javascript">
+      function getLocation() {
+          if (navigator.geolocation) { // GPS를 지원하면
+              navigator.geolocation.getCurrentPosition(function(position) {
+              document.getElementById("here-gps-1").value = position.coords.latitude;
+              document.getElementById("here-gps-2").value = position.coords.longitude;
+            }, function(error) {
+                console.error(error);
+            }, {
+              enableHighAccuracy: false,
+              maximumAge: 0,
+              timeout: Infinity
+            });
+          }
+          else
+            alert('GPS를 지원하지 않습니다');
+
+        }
+      getLocation();
+      document.getElementById("dest-gps-1").value = "35.944029";
+      document.getElementById("dest-gps-2").value = "126.684297";
+    </script>
+  </body>
+</html>
+<!-- <!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to get your coordinates.</p>
+
+<button onclick="getLocation()">Try It</button>
+
+<p id="demo"></p>
+
+<script>
+var x = document.getElementById("demo");
+
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else { 
+    x.innerHTML = "Geolocation is not supported by this browser.";
+  }
+}
+
+function showPosition(position) {
+  x.innerHTML = "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude;
+}
+</script>
+
+</body>
+</html> -->
